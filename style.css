@@ -59,16 +59,16 @@ html, body {
 
 .gate {
   position: absolute;
-  top: 4%;
+  top: 2%;
   left: 50%;
   transform: translateX(-50%);
   width: min(600px, 92vw);
-  height: 320px;
+  height: 640px;
 }
 
 .pillar {
   position: absolute;
-  top: 60px;
+  top: 380px;
   width: 44px;
   height: 260px;
   background:
@@ -88,7 +88,7 @@ html, body {
 
 .fence {
   position: absolute;
-  top: 130px;
+  top: 450px;
   width: 22%;
   height: 190px;
   background: repeating-linear-gradient(
@@ -101,7 +101,7 @@ html, body {
 
 .arch {
   position: absolute;
-  top: 40px;
+  top: 360px;
   left: 50%;
   transform: translateX(-50%);
   width: 78%;
@@ -123,36 +123,114 @@ html, body {
   border-radius: 50% 50% 0 0 / 100% 100% 0 0;
 }
 
-.ghost-face {
+/* Chains linking the sign board to the top of the gate */
+.sign-chain {
   position: absolute;
-  top: -18px;
+  top: 300px;
+  width: 2px;
+  height: 60px;
+  background: repeating-linear-gradient(0deg, #3a3a32 0px, #3a3a32 4px, #1a1a16 4px, #1a1a16 8px);
+}
+.sign-chain-left { left: 32%; }
+.sign-chain-right { right: 32%; }
+
+/* The hanging sign board itself */
+.sign-board {
+  position: absolute;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
-  filter: drop-shadow(0 0 14px rgba(255,0,0,0.35));
+  width: min(320px, 84vw);
+  padding: 18px 14px 20px 14px;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(255,255,255,0.05), transparent 40%),
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 2px, transparent 2px, transparent 26px),
+    linear-gradient(180deg, #3b372e 0%, #26231c 55%, #17150f 100%);
+  border: 3px solid #14120d;
+  border-radius: 6px;
+  box-shadow:
+    0 14px 30px rgba(0,0,0,0.7),
+    inset 0 2px 0 rgba(255,255,255,0.06),
+    inset 0 0 30px rgba(0,0,0,0.5);
+  text-align: center;
 }
 
-.sign {
-  position: absolute;
-  top: 92px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  pointer-events: none;
+.sign-face {
+  display: block;
+  margin: 0 auto 4px auto;
+  filter: drop-shadow(0 0 12px rgba(255,0,0,0.4));
 }
 
-.sign-title {
+.sign-title-svg {
+  display: block;
+  margin: -6px auto 0 auto;
+}
+
+.sign-title-text {
   font-family: 'Nosifer', cursive;
-  font-size: 34px;
-  fill: #b8ffb0;
-  filter: drop-shadow(0 0 6px #38ff2b) drop-shadow(0 0 14px rgba(40,255,30,0.5));
+  font-size: 46px;
+  fill: url(#titleFill);
+  stroke: #6b0000;
+  stroke-width: 0.6;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.8)) drop-shadow(0 0 10px rgba(120,0,0,0.5));
+}
+
+.blood-drip {
+  fill: #8a0000;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.6));
+  opacity: 0.9;
+}
+
+.sign-title-th {
+  font-family: 'Chonburi', serif;
+  font-size: 20px;
+  color: #d8cdb8;
+  margin-top: -4px;
+  text-shadow: 0 2px 3px rgba(0,0,0,0.7);
+  letter-spacing: 1px;
+}
+
+.sign-year-wrap {
+  position: relative;
+  margin-top: 14px;
+  display: inline-block;
 }
 
 .sign-year {
   font-family: 'Nosifer', cursive;
-  font-size: 22px;
-  fill: #ff3b3b;
-  filter: drop-shadow(0 0 8px rgba(255,0,0,0.7));
-  letter-spacing: 4px;
+  font-size: 26px;
+  color: #ff3b3b;
+  letter-spacing: 5px;
+  text-shadow: 0 0 8px rgba(255,0,0,0.7), 0 2px 2px rgba(0,0,0,0.8);
+}
+
+.blood-drop {
+  position: absolute;
+  top: -10px;
+  width: 7px;
+  height: 10px;
+  background: radial-gradient(circle at 35% 30%, #c23030, #6b0000);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 3px rgba(0,0,0,0.5);
+}
+.drop-1 { left: 18%; animation: dripFall 3.4s ease-in infinite; }
+.drop-2 { left: 48%; animation: dripFall 4.1s ease-in infinite 0.8s; }
+.drop-3 { left: 76%; animation: dripFall 3.7s ease-in infinite 1.6s; }
+
+@keyframes dripFall {
+  0%   { top: -10px; opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { top: 22px; opacity: 0; }
+}
+
+.sign-year-th {
+  font-family: 'Chonburi', serif;
+  font-size: 16px;
+  color: #c9a24b;
+  margin-top: 4px;
+  letter-spacing: 2px;
 }
 
 /* ================= CONSOLE ================= */
@@ -160,7 +238,7 @@ html, body {
   position: relative;
   z-index: 1;
   width: min(480px, 94vw);
-  margin: 300px auto 40px auto;
+  margin: 660px auto 40px auto;
   background:
     radial-gradient(circle at 85% 90%, rgba(120,60,20,0.18), transparent 30%),
     radial-gradient(circle at 10% 15%, rgba(100,50,20,0.12), transparent 25%),
@@ -194,6 +272,13 @@ html, body {
   letter-spacing: 1px;
   margin-bottom: 8px;
   opacity: 0.8;
+}
+
+.plate-th {
+  font-family: 'Sarabun', sans-serif;
+  font-size: 10px;
+  color: #7a7264;
+  margin-left: 4px;
 }
 
 .crt-frame {
@@ -279,6 +364,15 @@ html, body {
   text-shadow: 0 0 6px rgba(255,60,60,0.6);
 }
 
+.panel-label-th {
+  font-family: 'Sarabun', sans-serif;
+  font-size: 11px;
+  color: #d98a8a;
+  letter-spacing: 0;
+  text-shadow: none;
+  margin-left: 6px;
+}
+
 .phrase-panel, .result-panel, .score-panel {
   border-bottom: 1px dashed rgba(120,255,150,0.2);
   padding-bottom: 10px;
@@ -312,6 +406,13 @@ html, body {
   font-size: 13px;
   color: #9be8b3;
   min-height: 18px;
+}
+
+.status-line-th {
+  font-size: 12px;
+  color: #6fae82;
+  margin-top: 2px;
+  min-height: 16px;
 }
 
 .heard-line {
@@ -468,10 +569,20 @@ html, body {
   letter-spacing: 1px;
 }
 
+.footer-th {
+  font-family: 'Sarabun', sans-serif;
+  font-size: 10px;
+  color: #6a6357;
+  margin-left: 4px;
+  letter-spacing: 0;
+}
+
 /* ================= RESPONSIVE ================= */
 @media (max-width: 420px) {
-  .gate { top: 2%; }
-  .console { margin-top: 280px; }
+  .gate { top: 1%; height: 600px; }
+  .sign-board { width: 88vw; padding: 14px 10px 16px 10px; }
+  .sign-title-text { font-size: 38px; }
+  .sign-face { width: 108px; height: 92px; }
+  .console { margin-top: 620px; }
   .thai-display { font-size: 24px; }
-  .sign-title { font-size: 26px; }
 }

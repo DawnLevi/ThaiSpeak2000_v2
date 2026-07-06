@@ -24,72 +24,89 @@
       <div class="fence fence-right"></div>
       <div class="arch"></div>
 
-      <!-- Ghost face guarding the arch -->
-      <svg class="ghost-face" viewBox="0 0 200 180" width="200" height="180">
-        <defs>
-          <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#ff6b6b"/>
-            <stop offset="40%" stop-color="#ff3b3b"/>
-            <stop offset="70%" stop-color="#8a0000"/>
-            <stop offset="100%" stop-color="transparent"/>
-          </radialGradient>
-          <radialGradient id="faceGrad" cx="42%" cy="35%" r="70%">
-            <stop offset="0%" stop-color="#e8e0cf"/>
-            <stop offset="45%" stop-color="#c7bfa9"/>
-            <stop offset="80%" stop-color="#948c78"/>
-            <stop offset="100%" stop-color="#655e4d"/>
-          </radialGradient>
-          <linearGradient id="hairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#1a1816"/>
-            <stop offset="100%" stop-color="#000000"/>
-          </linearGradient>
-        </defs>
-        <!-- hair, layered strands for a more natural silhouette -->
-        <path d="M42 38 Q18 95 26 172 Q34 145 38 120 Q40 150 48 168 Q52 130 50 95 Q56 70 55 88 Z" fill="url(#hairGrad)"/>
-        <path d="M158 38 Q182 95 174 172 Q166 145 162 120 Q160 150 152 168 Q148 130 150 95 Q144 70 145 88 Z" fill="url(#hairGrad)"/>
-        <!-- face with radial subsurface shading -->
-        <ellipse cx="100" cy="80" rx="55" ry="65" fill="url(#faceGrad)"/>
-        <!-- cheekbone/eye-socket hollows for depth -->
-        <ellipse cx="78" cy="82" rx="16" ry="10" fill="#4a4335" opacity="0.25"/>
-        <ellipse cx="122" cy="82" rx="16" ry="10" fill="#4a4335" opacity="0.25"/>
-        <ellipse cx="100" cy="118" rx="20" ry="8" fill="#3a3428" opacity="0.15"/>
-        <!-- cracks -->
-        <path d="M70 40 Q75 60 65 75 Q80 85 72 100" stroke="#57503f" stroke-width="1.4" fill="none" opacity="0.8"/>
-        <path d="M130 45 Q125 65 135 78 Q120 90 128 105" stroke="#57503f" stroke-width="1.4" fill="none" opacity="0.8"/>
-        <path d="M100 30 Q98 55 102 78" stroke="#57503f" stroke-width="1.1" fill="none" opacity="0.7"/>
-        <path d="M85 95 Q90 100 84 108" stroke="#57503f" stroke-width="1" fill="none" opacity="0.6"/>
-        <!-- eye sockets (dark base beneath the glow) -->
-        <ellipse cx="78" cy="76" rx="15" ry="12" fill="#1a1410"/>
-        <ellipse cx="122" cy="76" rx="15" ry="12" fill="#1a1410"/>
-        <!-- glowing eyes -->
-        <circle cx="78" cy="75" r="13" fill="url(#eyeGlow)"/>
-        <circle cx="122" cy="75" r="13" fill="url(#eyeGlow)"/>
-        <circle cx="78" cy="75" r="4" fill="#fff0f0"/>
-        <circle cx="122" cy="75" r="4" fill="#fff0f0"/>
-        <!-- unsettling grin with gum shading -->
-        <path d="M65 112 Q100 140 135 112 Q100 130 65 112 Z" fill="#1c0606"/>
-        <path d="M68 114 Q100 128 132 114 Q100 122 68 114 Z" fill="#3a0d0d" opacity="0.6"/>
-        <path d="M70 114 L74 122 M78 116 L81 125 M86 118 L88 127 M94 119 L95 128 M102 119 L103 128 M110 118 L112 127 M118 116 L121 125 M126 114 L130 122"
-              stroke="#f2e9d8" stroke-width="1.6" stroke-linecap="round"/>
-      </svg>
+      <!-- Hanging sign board above the gate -->
+      <div class="sign-chain sign-chain-left"></div>
+      <div class="sign-chain sign-chain-right"></div>
+      <div class="sign-board">
+        <svg class="sign-face" viewBox="0 0 200 170" width="128" height="109">
+          <defs>
+            <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ff8080"/>
+              <stop offset="35%" stop-color="#ff3b3b"/>
+              <stop offset="70%" stop-color="#8a0000"/>
+              <stop offset="100%" stop-color="transparent"/>
+            </radialGradient>
+            <radialGradient id="faceGrad" cx="42%" cy="32%" r="75%">
+              <stop offset="0%" stop-color="#efe7d6"/>
+              <stop offset="40%" stop-color="#cfc6b0"/>
+              <stop offset="75%" stop-color="#a49a82"/>
+              <stop offset="100%" stop-color="#6e6552"/>
+            </radialGradient>
+            <linearGradient id="hairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#201d19"/>
+              <stop offset="100%" stop-color="#000000"/>
+            </linearGradient>
+          </defs>
+          <path d="M42 36 Q16 94 24 168 Q33 142 37 118 Q39 150 47 166 Q52 128 49 92 Q56 66 55 86 Z" fill="url(#hairGrad)"/>
+          <path d="M158 36 Q184 94 176 168 Q167 142 163 118 Q161 150 153 166 Q148 128 151 92 Q144 66 145 86 Z" fill="url(#hairGrad)"/>
+          <ellipse cx="100" cy="78" rx="56" ry="66" fill="url(#faceGrad)"/>
+          <ellipse cx="76" cy="80" rx="17" ry="11" fill="#4a4335" opacity="0.28"/>
+          <ellipse cx="124" cy="80" rx="17" ry="11" fill="#4a4335" opacity="0.28"/>
+          <ellipse cx="100" cy="118" rx="21" ry="9" fill="#3a3428" opacity="0.18"/>
+          <ellipse cx="70" cy="100" rx="9" ry="6" fill="#8a5a4a" opacity="0.12"/>
+          <ellipse cx="130" cy="100" rx="9" ry="6" fill="#8a5a4a" opacity="0.12"/>
+          <path d="M68 38 Q74 60 63 76 Q80 87 71 102" stroke="#57503f" stroke-width="1.4" fill="none" opacity="0.85"/>
+          <path d="M132 44 Q126 64 137 78 Q120 91 129 106" stroke="#57503f" stroke-width="1.4" fill="none" opacity="0.85"/>
+          <path d="M100 28 Q97 54 102 78" stroke="#57503f" stroke-width="1.1" fill="none" opacity="0.75"/>
+          <path d="M84 96 Q90 101 83 110" stroke="#57503f" stroke-width="1" fill="none" opacity="0.6"/>
+          <path d="M116 98 Q112 104 118 112" stroke="#57503f" stroke-width="1" fill="none" opacity="0.6"/>
+          <ellipse cx="76" cy="74" rx="16" ry="13" fill="#180f0c"/>
+          <ellipse cx="124" cy="74" rx="16" ry="13" fill="#180f0c"/>
+          <circle cx="76" cy="73" r="14" fill="url(#eyeGlow)"/>
+          <circle cx="124" cy="73" r="14" fill="url(#eyeGlow)"/>
+          <circle cx="76" cy="73" r="4.5" fill="#fff2f2"/>
+          <circle cx="124" cy="73" r="4.5" fill="#fff2f2"/>
+          <path d="M64 112 Q100 142 136 112 Q100 133 64 112 Z" fill="#170505"/>
+          <path d="M67 114 Q100 130 133 114 Q100 123 67 114 Z" fill="#3a0d0d" opacity="0.65"/>
+          <path d="M69 114 L73 123 M77 116 L80 126 M85 118 L87 128 M93 119 L94 129 M101 119 L102 129 M109 118 L111 128 M117 116 L120 126 M125 114 L129 123"
+                stroke="#f2e9d8" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
 
-      <!-- Sign: ThaiSpeak (curved) + 2000 -->
-      <svg class="sign" viewBox="0 0 520 170" width="100%" height="170">
-        <defs>
-          <path id="signArc" d="M 30 130 Q 260 20 490 130" fill="transparent"/>
-        </defs>
-        <text class="sign-title">
-          <textPath href="#signArc" startOffset="50%" text-anchor="middle">ThaiSpeak</textPath>
-        </text>
-        <text x="260" y="165" text-anchor="middle" class="sign-year">2000</text>
-      </svg>
+        <svg class="sign-title-svg" viewBox="0 0 340 130" width="100%" height="130">
+          <defs>
+            <path id="signArc" d="M 20 105 Q 170 8 320 105" fill="transparent"/>
+            <linearGradient id="titleFill" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#f5f0e4"/>
+              <stop offset="60%" stop-color="#dcd4c2"/>
+              <stop offset="100%" stop-color="#b8ae98"/>
+            </linearGradient>
+          </defs>
+          <text class="sign-title-text">
+            <textPath href="#signArc" startOffset="50%" text-anchor="middle">ThaiSpeak</textPath>
+          </text>
+          <path class="blood-drip" d="M95 96 q-3 16 -6 24 q5 3 7 -4 q2 10 -4 16 q6 1 6 -7 z"/>
+          <path class="blood-drip" d="M150 78 q-2 20 -5 30 q4 3 6 -4 q2 12 -3 18 q6 1 6 -8 z"/>
+          <path class="blood-drip" d="M195 76 q3 18 6 27 q-4 3 -6 -4 q-2 11 4 17 q-6 1 -6 -7 z"/>
+          <path class="blood-drip" d="M245 95 q2 15 5 22 q-4 3 -6 -3 q-1 9 4 14 q-5 2 -5 -6 z"/>
+        </svg>
+
+        <div class="sign-title-th">ไทยสปีค</div>
+
+        <div class="sign-year-wrap">
+          <div class="blood-drop drop-1"></div>
+          <div class="blood-drop drop-2"></div>
+          <div class="blood-drop drop-3"></div>
+          <div class="sign-year">2000</div>
+        </div>
+        <div class="sign-year-th">๒๐๐๐</div>
+      </div>
     </div>
   </div>
 
   <!-- ============ FOREGROUND: the console ============ -->
   <div class="console">
     <div class="console-vents"></div>
-    <div class="console-plate">MODEL&nbsp;TH-2000</div>
+    <div class="console-plate">MODEL&nbsp;TH-2000 <span class="plate-th">รุ่น</span></div>
     <div class="led"></div>
 
     <div class="crt-frame">
@@ -102,20 +119,21 @@
         <div class="screen-content">
 
           <div class="phrase-panel">
-            <div class="panel-label">TARGET PHRASE</div>
+            <div class="panel-label">TARGET PHRASE <span class="panel-label-th">วลีเป้าหมาย</span></div>
             <div class="thai-display" id="thaiText">สวัสดีครับ</div>
             <div class="romanization" id="romanText">sawatdee khrap</div>
             <div class="meaning" id="meaningText">"Hello" (male speaker)</div>
           </div>
 
           <div class="result-panel">
-            <div class="panel-label">RECOGNITION</div>
+            <div class="panel-label">RECOGNITION <span class="panel-label-th">ผลการฟัง</span></div>
             <div class="status-line" id="statusText">Press RECORD and say the phrase above.</div>
+            <div class="status-line-th" id="statusTextTh">กดปุ่ม RECORD แล้วพูดวลีด้านบน</div>
             <div class="heard-line" id="heardText">&nbsp;</div>
           </div>
 
           <div class="score-panel">
-            <div class="panel-label">ACCURACY</div>
+            <div class="panel-label">ACCURACY <span class="panel-label-th">ความแม่นยำ</span></div>
             <div class="score-gauge">
               <div class="score-gauge-fill" id="scoreFill"></div>
               <div class="score-gauge-segments"></div>
@@ -151,7 +169,7 @@
     </div>
 
     <div class="console-footer">
-      <span id="footerStatus">Ready</span>
+      <span id="footerStatus">Ready</span><span class="footer-th" id="footerStatusTh">พร้อม</span>
       <span>THAISPEAK 2000</span>
     </div>
   </div>

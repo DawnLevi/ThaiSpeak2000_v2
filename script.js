@@ -33,6 +33,7 @@ const recordBtn = document.getElementById('recordBtn');
 const listenBtn = document.getElementById('listenBtn');
 const newWordBtn = document.getElementById('newWordBtn');
 const statusText = document.getElementById('statusText');
+const statusTextTh = document.getElementById('statusTextTh');
 const heardText = document.getElementById('heardText');
 const scoreFill = document.getElementById('scoreFill');
 const scoreNumber = document.getElementById('scoreNumber');
@@ -41,7 +42,38 @@ const personaGif = document.getElementById('personaGif');
 const personaCaptionEn = document.getElementById('personaCaptionEn');
 const personaCaptionTh = document.getElementById('personaCaptionTh');
 const footerStatus = document.getElementById('footerStatus');
+const footerStatusTh = document.getElementById('footerStatusTh');
 const recordLabel = document.getElementById('recordLabel');
+
+// ---- Bilingual status helpers ----
+// Keeps the English status line and its Thai translation in sync.
+const STATUS_TH = {
+  'Press RECORD and say the phrase above.': 'กดปุ่ม RECORD แล้วพูดวลีด้านบน',
+  'Text-to-speech is not supported in this browser.': 'เบราว์เซอร์นี้ไม่รองรับการอ่านออกเสียง',
+  'No Thai voice found on this device — playing with default voice.': 'ไม่พบเสียงภาษาไทยในอุปกรณ์นี้ กำลังเล่นด้วยเสียงเริ่มต้น',
+  'Could not play audio. Try again.': 'เล่นเสียงไม่ได้ กรุณาลองใหม่อีกครั้ง',
+  'Speech recognition is not supported in this browser. Try Chrome.': 'เบราว์เซอร์นี้ไม่รองรับการรู้จำเสียง ลองใช้ Chrome',
+  'Listening... speak now.': 'กำลังฟัง... พูดได้เลย',
+  'Great pronunciation!': 'ออกเสียงเก่งมาก!',
+  'Keep practicing that phrase.': 'ฝึกวลีนี้ต่อไปนะ',
+};
+
+const FOOTER_TH = {
+  'Ready': 'พร้อม',
+  'Recording...': 'กำลังอัดเสียง...',
+  'Playing pronunciation...': 'กำลังเล่นเสียง...',
+  'Error': 'ข้อผิดพลาด',
+};
+
+function setStatus(en) {
+  statusText.textContent = en;
+  statusTextTh.textContent = STATUS_TH[en] || '';
+}
+
+function setFooter(en) {
+  footerStatus.textContent = en;
+  footerStatusTh.textContent = FOOTER_TH[en] || '';
+}
 
 function loadPhrase(phrase) {
   if (window.speechSynthesis) window.speechSynthesis.cancel();
@@ -53,7 +85,7 @@ function loadPhrase(phrase) {
   scoreFill.style.width = '0%';
   scoreNumber.textContent = '0%';
   personaArea.classList.remove('visible');
-  statusText.textContent = 'Press RECORD and say the phrase above.';
+  setStatus('Press RECORD and say the phrase above.');
 }
 
 newWordBtn.addEventListener('click', () => {
@@ -156,7 +188,7 @@ function getThaiVoice() {
 
 function speakCurrentPhrase() {
   if (!window.speechSynthesis) {
-    statusText.textContent = 'Text-to-speech is not supported in this browser.';
+    setStatus('Text-to-speech is not supported in this browser.');
     return;
   }
   if (!currentPhrase) return;
@@ -171,21 +203,21 @@ function speakCurrentPhrase() {
   if (thaiVoice) {
     utterance.voice = thaiVoice;
   } else {
-    statusText.textContent = 'No Thai voice found on this device — playing with default voice.';
+    setStatus('No Thai voice found on this device — playing with default voice.');
   }
 
   utterance.onstart = () => {
     listenBtn.classList.add('speaking');
-    footerStatus.textContent = 'Playing pronunciation...';
+    setFooter('Playing pronunciation...');
   };
   utterance.onend = () => {
     listenBtn.classList.remove('speaking');
-    footerStatus.textContent = 'Ready';
+    setFooter('Ready');
   };
   utterance.onerror = () => {
     listenBtn.classList.remove('speaking');
-    footerStatus.textContent = 'Ready';
-    statusText.textContent = 'Could not play audio. Try again.';
+    setFooter('Ready');
+    setStatus('Could not play audio. Try again.');
   };
 
   window.speechSynthesis.speak(utterance);
@@ -199,7 +231,7 @@ let recognition = null;
 let isRecording = false;
 
 if (!SpeechRecognition) {
-  statusText.textContent = 'Speech recognition is not supported in this browser. Try Chrome.';
+  setStatus('Speech recognition is not supported in this browser. Try Chrome.');
   recordBtn.disabled = true;
 } else {
   recognition = new SpeechRecognition();
@@ -211,8 +243,8 @@ if (!SpeechRecognition) {
     isRecording = true;
     recordBtn.classList.add('recording');
     recordLabel.textContent = 'STOP';
-    statusText.textContent = 'Listening... speak now.';
-    footerStatus.textContent = 'Recording...';
+    setStatus('Listening... speak now.');
+    setFooter('Recording...');
   };
 
   recognition.onresult = (event) => {
@@ -223,23 +255,22 @@ if (!SpeechRecognition) {
     scoreFill.style.width = score + '%';
     scoreNumber.textContent = score + '%';
 
-    statusText.textContent = score > 80
-      ? 'Great pronunciation!'
-      : 'Keep practicing that phrase.';
+    setStatus(score > 80 ? 'Great pronunciation!' : 'Keep practicing that phrase.');
 
     showPersonaFeedback(score);
   };
 
   recognition.onerror = (event) => {
     statusText.textContent = 'Error: ' + event.error + '. Please try again.';
-    footerStatus.textContent = 'Error';
+    statusTextTh.textContent = 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง';
+    setFooter('Error');
   };
 
   recognition.onend = () => {
     isRecording = false;
     recordBtn.classList.remove('recording');
     recordLabel.textContent = 'RECORD';
-    footerStatus.textContent = 'Ready';
+    setFooter('Ready');
   };
 }
 
